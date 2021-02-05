@@ -7,20 +7,22 @@
         <h2>Dobrodosli</h2>
         
         <form method="POST">
-            <p>Username: <input type="text" name="username" value=<?php echo (isset($_POST['login'])) ? $_POST['username'] : "" ?> ></p>
+            <p>Email: <input type="text" name="email" value=<?php echo (isset($_POST['login'])) ? $_POST['email'] : "" ?> ></p>
             <p>Password: <input type="password" name="password"></p>
             <input type="submit" name="login" value="Login">
+            <input type="submit" name="guestlogin" value="Nastavi kao gost">
         </form>
 
         <?php
             if (isset($_POST['login']))
             {
-                $username = $_POST['username'];
+                $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                if (strlen($username) == 0 || strlen($password) == 0)
+                if (strlen($email) == 0 || strlen($password) == 0)
                 {
                     echo "<span style='color: red'>Polje za unos ne sme biti prazno!</span>";
+                    exit();
                 }
 
                 require("mysql_functions.php");
@@ -32,12 +34,95 @@
                     exit();
                 }
 
+                $result_administrator = mysqli_query($handle, "select * from administrator where email='".$email."' and lozinka='".$password."'");
+                $result_zaposleni = mysqli_query($handle, "select * from zaposleni where email='".$email."' and lozinka='".$password."'");
+                $result_student = mysqli_query($handle, "select * from student where email='".$email."' and lozinka='".$password."'");
 
-                $result = mysqli_query($handle, "select * from administrator where email='".$username."' and lozinka='".$password."'");
+                if ($result_administrator != false && mysqli_num_rows($result_administrator) > 0)
+                {
+                    $row = mysqli_fetch_assoc($result_administrator);
+                    $first_access = $row['prvipristup'];
+                    $status = $row['status'];
 
-                $result = mysqli_query($handle, "select * from zaposleni where email='".$username."' and lozinka='".$password."'");
+                    if ($status == 1)
+                    {
+                        session_start();
+                        $_SESSION['email'] = $email;
 
-                $result = mysqli_query($handle, "select * from student where email='".$username."' and lozinka='".$password."'");
+                        if ($first_access == 1)
+                        {
+                            header("Location:/administrator.php");
+                        }
+                        else
+                        {
+                            header("Location:/change_password.php");
+                        }
+                    }
+                    else
+                    {
+                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
+                    }
+                }
+                else if ($result_zaposleni != false && mysqli_num_rows($result_zaposleni) > 0)
+                {
+                    $row = mysqli_fetch_assoc($result_administrator);
+                    $first_access = $row['prvipristup'];
+
+                    if ($status == 1)
+                    {
+                        session_start();
+                        $_SESSION['email'] = $email;
+
+                        if ($first_access == 1)
+                        {
+                            header("Location:/administrator.php");
+                        }
+                        else
+                        {
+                            header("Location:/change_password.php");
+                        }
+                    }
+                    else
+                    {
+                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
+                    }
+                }
+                else if ($result_student != false && mysqli_num_rows($result_student) > 0)
+                {
+                    $row = mysqli_fetch_assoc($result_administrator);
+                    $first_access = $row['prvipristup'];
+
+                    if ($status == 1)
+                    {
+                        session_start();
+                        $_SESSION['email'] = $email;
+
+                        if ($first_access == 1)
+                        {
+                            header("Location:/administrator.php");
+                        }
+                        else
+                        {
+                            header("Location:/change_password.php");
+                        }
+                    }
+                    else
+                    {
+                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
+                    }
+                }
+                else
+                {
+                    echo "<span style='color: red'>Pogresan email ili lozinka.</span>";
+                }
+
+            }
+            else if (isset($_POST['guestlogin']))
+            {
+                session_start();
+                $_SESSION['email'] = "GUEST";
+
+                header("Location:/gost.php");
             }
         ?>
 
