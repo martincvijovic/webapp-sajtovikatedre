@@ -38,6 +38,11 @@
                 $result_zaposleni = mysqli_query($handle, "select * from zaposleni where email='".$email."' and lozinka='".$password."'");
                 $result_student = mysqli_query($handle, "select * from student where email='".$email."' and lozinka='".$password."'");
 
+                dbDisconnect($handle, $result_administrator); // brise se rezultat za administratora, treba obrisati i rezultat za zaposlenog i studenta
+                // TODO : dbDisconnect da prima niz rezultata umesto samo jedan, vrlo cesto ce se raditi sa vise upita pre DC-ovanja.
+                if ($result_zaposleni != false) mysqli_free_result($result_zaposleni);
+                if ($result_student != false) mysqli_free_result($result_student);
+
                 if ($result_administrator != false && mysqli_num_rows($result_administrator) > 0)
                 {
                     $row = mysqli_fetch_assoc($result_administrator);
@@ -48,6 +53,7 @@
                     {
                         session_start();
                         $_SESSION['email'] = $email;
+                        $_SESSION['tip'] = "administrator";
 
                         if ($first_access == 1)
                         {
@@ -72,6 +78,7 @@
                     {
                         session_start();
                         $_SESSION['email'] = $email;
+                        $_SESSION['tip'] = "zaposleni";
 
                         if ($first_access == 1)
                         {
@@ -96,6 +103,7 @@
                     {
                         session_start();
                         $_SESSION['email'] = $email;
+                        $_SESSION['tip'] = "student";
 
                         if ($first_access == 1)
                         {
