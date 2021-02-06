@@ -1,0 +1,8 @@
+#footerbody{
+    font-family: Arial, Helvetica, sans-serif;
+    height: 50px;
+    width: 100%;
+    float: left;
+    background-color: rgb(190, 193, 196);
+    text-align: center;
+}

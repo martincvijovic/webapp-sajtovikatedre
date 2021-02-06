@@ -9,22 +9,14 @@
         require("mysql_functions.php");
 
         $handle = dbConnect();
-
-        /**
-         * Pod pretpostavkom da je baza ispravna
-         * ovaj upit ce uvek vracati jedan i 
-         * samo jedan rezultat.
-         */
         $result = mysqli_query($handle, "select ime from ".$tip." where email='".$email."'"); 
 
         $row = mysqli_fetch_assoc($result);
         $first_name = $row['ime'];
 
         dbDisconnect($handle, $result);
-        
     ?>
     <body>
-        <h3>Hello, <?php echo $first_name ?>!</h3>
         <p>Promena lozinke</p>
 
         <form method="POST">

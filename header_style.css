@@ -1,0 +1,15 @@
+#info{
+    font-family: Arial, Helvetica, sans-serif;
+    width: 75%;
+    height: 50px;
+    float: left;
+    background-color: rgb(190, 193, 196);
+}
+
+#user{
+    width: 25%;
+    height: 50px;
+    float: left;
+    background-color: rgb(190, 193, 196);
+
+}

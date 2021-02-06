@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Prijava</title>
-        <link rel="stylesheet" type="text/css" href="homepage_style.css">
+        <link rel="stylesheet" type="text/css" href="login_style.css">
     </head>
     <body>
         <h2>Prijavite se</h2>
@@ -33,95 +33,47 @@
                     exit();
                 }
 
-                $result_administrator = mysqli_query($handle, "select * from administrator where email='".$email."' and lozinka='".$password."'");
-                $result_zaposleni = mysqli_query($handle, "select * from zaposleni where email='".$email."' and lozinka='".$password."'");
-                $result_student = mysqli_query($handle, "select * from student where email='".$email."' and lozinka='".$password."'");
+                $result = mysqli_query($handle, "select * from korisnik where email='".$email."' and lozinka='".$password."'");
 
-                dbDisconnect($handle, false); 
-
-                if ($result_administrator != false && mysqli_num_rows($result_administrator) > 0)
+                if ($result != false && mysqli_num_rows($result) > 0) 
                 {
-                    $row = mysqli_fetch_assoc($result_administrator);
+                    $row = mysqli_fetch_assoc($result);
                     $first_access = $row['prvipristup'];
-                    $status = $row['status'];
-
-                    if ($status == 1)
-                    {
-                        session_start();
-                        $_SESSION['email'] = $email;
-                        $_SESSION['tip'] = "administrator";
-
-                        if ($first_access == 1)
-                        {
-                            header("Location:/administrator.php");
-                        }
-                        else
-                        {
-                            header("Location:/change_password.php");
-                        }
-                    }
-                    else
-                    {
-                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
-                    }
-                }
-                else if ($result_zaposleni != false && mysqli_num_rows($result_zaposleni) > 0)
-                {
-                    $row = mysqli_fetch_assoc($result_administrator);
-                    $first_access = $row['prvipristup'];
-
-                    if ($status == 1)
-                    {
-                        session_start();
-                        $_SESSION['email'] = $email;
-                        $_SESSION['tip'] = "zaposleni";
-
-                        if ($first_access == 1)
-                        {
-                            header("Location:/zaposleni.php");
-                        }
-                        else
-                        {
-                            header("Location:/change_password.php");
-                        }
-                    }
-                    else
-                    {
-                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
-                    }
-                }
-                else if ($result_student != false && mysqli_num_rows($result_student) > 0)
-                {
-                    $row = mysqli_fetch_assoc($result_administrator);
-                    $first_access = $row['prvipristup'];
-
-                    if ($status == 1)
-                    {
-                        session_start();
-                        $_SESSION['email'] = $email;
-                        $_SESSION['tip'] = "student";
-
-                        if ($first_access == 1)
-                        {
-                            header("Location:/student.php");
-                        }
-                        else
-                        {
-                            header("Location:/change_password.php");
-                        }
-                    }
-                    else
-                    {
-                        echo "<span style='color: red'>Kreirani nalog je neaktivan. Molimo kontaktirajte administratora sistema.</span>";
-                    }
+                    $ime = $row['ime'];
                 }
                 else
                 {
-                    echo "<span style='color: red'>Pogresan email ili lozinka.</span>";
+                    echo "<span style='color: red'>Pogresno korisnicko ime ili lozinka</span>";
+                    dbConnect($handle, false);
+                    exit();
                 }
 
+                $tipovi = ["administrator", "zaposleni", "student"];
+                foreach ($tipovi as $tip)
+                {
+                    $result = mysqli_query($handle, "select * from ".$tip." where email='".$email."'");
+
+                    if ($result != false && mysqli_num_rows($result) > 0)
+                    {
+                        session_start();
+                        $_SESSION['email'] = $email;
+                        $_SESION['ime'] = $ime;
+                        $_SESSION['tip'] = $tip;
+                        break;
+                    }
+                }
+
+                dbDisconnect($handle, $result);
+
+                if ($first_access)
+                {
+                    header("Location:/change_password.php");
+                }
+                else
+                {
+                    header("Location:/index.php");
+                }
             }
         ?>
-
     </body>
 </html>

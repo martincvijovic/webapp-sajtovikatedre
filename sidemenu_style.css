@@ -1,0 +1,10 @@
+#sidemenu{
+    background-color: rgb(148, 151, 153);;
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+a:link, a:visited, a:hover{
+    color: black;
+}
