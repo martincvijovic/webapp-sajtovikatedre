@@ -1,5 +1,6 @@
 <html>
-    <head></head>
+    <head>
+    </head>
     <?php
         session_start();
         $email = $_SESSION['email'];
@@ -35,7 +36,25 @@
         <?php
             if (isset($_POST['changepassword']))
             {
-                // query zameni lozinku i flag prvipristup
+                $password1 = $_POST['password1'];
+                $password2 = $_POST['password2'];
+
+                if (strcmp($password1, $password2) == 0)
+                {
+                    $handle = dbConnect();
+
+                    // menjamo sifru i stavljamo prvi pristup na nulu
+                    $result = mysqli_query($handle, "update ".$tip." set lozinka='".$password1."' where email='".$email."'");
+                    $result = mysqli_query($handle, "update ".$tip." set prvipristup=0 where email='".$email."'");
+
+                    dbDisconnect($handle, $result);
+
+                    header("Location:/login.php");
+                }
+                else
+                {
+                    echo "<span style='color: red'>Polja za unos nove lozinke se ne poklapaju.</span>";
+                }
             }
         ?>
     </body>
