@@ -11,10 +11,9 @@
                 session_start();
                 if (isset($_SESSION['email']))
                 {
-                    echo "Ulogovani ste kao: ".$_SESION['ime'].".";
                     ?>
                     <form method="GET">
-                        <input type="submit" value="Izlogujte se" name="logout">
+                        <p>Ulogovani ste kao: <?php echo $_SESSION['ime'] ?> <input type="submit" value="Izlogujte se" name="logout"></p>
                     </form>
                     <?php
                 }
@@ -33,6 +32,7 @@
             {
                 session_destroy();
                 $_SESSION = array();
+                header("Location:/projekat/index.php");
             }
         ?>
     </body>

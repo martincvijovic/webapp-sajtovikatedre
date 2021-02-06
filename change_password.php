@@ -4,12 +4,12 @@
     <?php
         session_start();
         $email = $_SESSION['email'];
-        $tip = $_SESION['tip'];
+        $tip = $_SESSION['tip'];
 
         require("mysql_functions.php");
 
         $handle = dbConnect();
-        $result = mysqli_query($handle, "select ime from ".$tip." where email='".$email."'"); 
+        $result = mysqli_query($handle, "select ime from korisnik where email='".$email."'"); 
 
         $row = mysqli_fetch_assoc($result);
         $first_name = $row['ime'];
@@ -36,12 +36,12 @@
                     $handle = dbConnect();
 
                     // menjamo sifru i stavljamo prvi pristup na nulu
-                    $result = mysqli_query($handle, "update ".$tip." set lozinka='".$password1."' where email='".$email."'");
-                    $result = mysqli_query($handle, "update ".$tip." set prvipristup=0 where email='".$email."'");
+                    $result = mysqli_query($handle, "update korisnik set lozinka='".$password1."' where email='".$email."'");
+                    $result = mysqli_query($handle, "update korisnik set prvipristup=0 where email='".$email."'");
 
                     dbDisconnect($handle, $result);
 
-                    header("Location:/login.php");
+                    header("Location:/projekat/login.php");
                 }
                 else
                 {

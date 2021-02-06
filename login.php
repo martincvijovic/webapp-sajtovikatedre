@@ -13,7 +13,7 @@
         </form>
 
         <?php
-            if (isset($_POST['login']))
+            if (isset($_POST['login'])) // TODO : DODAJ STATUS !!!
             {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
@@ -57,7 +57,7 @@
                     {
                         session_start();
                         $_SESSION['email'] = $email;
-                        $_SESION['ime'] = $ime;
+                        $_SESSION['ime'] = $ime;
                         $_SESSION['tip'] = $tip;
                         break;
                     }
@@ -67,11 +67,11 @@
 
                 if ($first_access)
                 {
-                    header("Location:/change_password.php");
+                    header("Location:/projekat/change_password.php");
                 }
                 else
                 {
-                    header("Location:/index.php");
+                    header("Location:/projekat/index.php");
                 }
             }
         ?>
