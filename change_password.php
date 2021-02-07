@@ -1,5 +1,6 @@
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="login_style.css">
     </head>
     <?php
         session_start();
@@ -28,7 +29,7 @@
         <?php
             if (isset($_POST['changepassword']))
             {
-                $password1 = $_POST['password1'];
+                $password1 = $_POST['password1']; // TODO : moguce je ovo obaviti na klijentskoj strani
                 $password2 = $_POST['password2'];
 
                 if (strcmp($password1, $password2) == 0)
@@ -41,11 +42,14 @@
 
                     dbDisconnect($handle, $result);
 
+                    session_destroy();
+                    $_SESSION = array();
+
                     header("Location:/projekat/login.php");
                 }
                 else
                 {
-                    echo "<span style='color: red'>Polja za unos nove lozinke se ne poklapaju.</span>";
+                    echo "<p>Polja za unos nove lozinke se ne poklapaju.</p>";
                 }
             }
         ?>

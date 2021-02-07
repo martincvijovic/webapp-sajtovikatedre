@@ -20,7 +20,7 @@
 
                 if (strlen($email) == 0 || strlen($password) == 0)
                 {
-                    echo "<span style='color: red'>Polje za unos ne sme biti prazno!</span>";
+                    echo "<p'>Polje za unos ne sme biti prazno!</p>";
                     exit();
                 }
 
@@ -40,12 +40,18 @@
                     $row = mysqli_fetch_assoc($result);
                     $first_access = $row['prvipristup'];
                     $ime = $row['ime'];
+                    $status = $row['status'];
                 }
                 else
                 {
-                    echo "<span style='color: red'>Pogresno korisnicko ime ili lozinka</span>";
+                    echo "<p>Pogresno korisnicko ime ili lozinka</p>";
                     dbConnect($handle, false);
                     exit();
+                }
+
+                if ($status == 0)
+                {
+                    echo "<p>Nalog '$ime' nije aktivan. Molimo kontaktirajte administratora.</p>";
                 }
 
                 $tipovi = ["administrator", "zaposleni", "student"];

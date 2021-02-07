@@ -11,5 +11,8 @@
     height: 50px;
     float: left;
     background-color: rgb(190, 193, 196);
+}
 
+p{
+    padding-left: 10px;
 }

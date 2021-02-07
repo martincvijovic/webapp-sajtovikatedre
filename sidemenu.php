@@ -28,7 +28,7 @@
                     {
                         ?>
                         <ul>
-                            <li><a href="novi_korisnik.php">Dodaj novog korisnika</a></li>
+                            <li><a href="upravljaj_korisnicima.php">Upravljaj korisnicima</a></li>
                             <li><a href="novo_opste_obavestenje.php">Dodaj novo opste obavestenje</a></li>
                             <li><a href="nova_kategorija_obavestenja.php">Dodaj novu kategoriju obavestenja</a></li>
                             <li><a href="nov_predmet_grupa_nastavnik.php">Dodeli predmet i grupu nastavniku</a></li>
