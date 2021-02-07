@@ -3,6 +3,7 @@
         <title>Azuriraj korisnika</title>
         <link rel="stylesheet" type="text/css" href="nomargin-style.css">
         <link rel="stylesheet" type="text/css" href="content-style.css">
+        <script src="validate.js"></script>
     </head>
     <body>
         <?php
@@ -80,27 +81,47 @@
                         }
                         else // student 
                         {
-                            // TODO : js validate???
                             ?>
                             <form method="GET">
-                                <p>Email <input type="text" name="email" value="<?php echo $email ?>"></p>
-                                <p>Lozinka <input type="password" name="password" value="<?php echo $lozinka ?>"></p>
-                                <p>Ime <input type="text" name="ime" value="<?php echo $ime ?>"></p>
-                                <p>Prezime <input type="text" name="prezime" value="<?php echo $prezime ?>"></p>
-                                <p>Status</p>
-                                <p>Prvi pristup</p>
-                                <p>Broj indeksa <input type="text" name="indeks" value="<?php echo $indeks ?>"></p>
-                                <p>Tip studija </p>
-                                <input type="submit" name="azurirajkorisnika" value="Azuriraj korisnika">
+                                <p>Email <input id="email" type="text" name="email" value="<?php echo $email ?>"></p>
+                                <p>Lozinka <input id="password" type="password" name="password" value="<?php echo $lozinka ?>"></p>
+                                <p>Ime <input id="ime" type="text" name="ime" value="<?php echo $ime ?>"></p>
+                                <p>Prezime <input id="prezime" type="text" name="prezime" value="<?php echo $prezime ?>"></p>
+                                <p>
+                                    Status
+                                    <select name="status">
+                                        <option <?php echo ($status == 1) ? "selected" : "" ?> value="aktivan">Aktivan</option>
+                                        <option <?php echo ($status == 0) ? "selected" : "" ?> value="neaktivan">Neaktivan</option>
+                                    </select>
+                                </p>
+                                <p>
+                                    Prvi pristup <input type="checkbox" name="prvipristup" <?php echo ($prvipristup == 1) ? "checked" : "" ?>>
+                                </p>
+                                <p>Broj indeksa <input id="indeks" type="text" name="indeks" value="<?php echo $indeks ?>"></p>
+                                <p>
+                                    Tip studija 
+                                    <select name="tipstudija">
+                                        <option <?php echo (strcmp($tipstudija, "d") == 0) ? "selected" : "" ?> value="d">Osnovne</option>
+                                        <option <?php echo (strcmp($tipstudija, "m") == 0) ? "selected" : "" ?> value="m">Master</option>
+                                        <option <?php echo (strcmp($tipstudija, "p") == 0) ? "selected" : "" ?> value="p">Doktorske</option>                             
+                                    </select>
+                                </p>
+                                <input type="submit" onclick="validateUserUpdate()" name="azurirajkorisnika" value="Azuriraj korisnika">
                             </form>
                             <?php
                         }
                     ?>
-
                 </div>
             <?php
             }
             require("footer.php");
+        ?>
+        <?php
+            if (isset($_GET['azurirajkorisnika']))
+            {
+                // TODO : ...
+                echo "aaaaaaa";
+            }
         ?>
     </body>
 </html>
