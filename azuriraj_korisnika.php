@@ -7,6 +7,7 @@
     </head>
     <body>
         <?php
+            ob_start(); /* Bez ovoga baca neku jako cudnu gresku sa headerima, trazio sam 2h ali nisam nasao zasto */
             require("header.php");
             require("sidemenu.php");
             
@@ -82,9 +83,9 @@
                         else // student 
                         {
                             ?>
-                            <form method="GET">
+                            <form id="studentupdate" method="POST" onSubmit="return validateStudentUpdate();">
                                 <p>Email <input id="email" type="text" name="email" value="<?php echo $email ?>"></p>
-                                <p>Lozinka <input id="password" type="password" name="password" value="<?php echo $lozinka ?>"></p>
+                                <p>Lozinka <input id="lozinka" type="password" name="password" value="<?php echo $lozinka ?>"></p>
                                 <p>Ime <input id="ime" type="text" name="ime" value="<?php echo $ime ?>"></p>
                                 <p>Prezime <input id="prezime" type="text" name="prezime" value="<?php echo $prezime ?>"></p>
                                 <p>
@@ -106,7 +107,7 @@
                                         <option <?php echo (strcmp($tipstudija, "p") == 0) ? "selected" : "" ?> value="p">Doktorske</option>                             
                                     </select>
                                 </p>
-                                <input type="submit" onclick="validateUserUpdate()" name="azurirajkorisnika" value="Azuriraj korisnika">
+                                <input type="submit" name="azurirajstudenta" value="Azuriraj korisnika">
                             </form>
                             <?php
                         }
@@ -117,10 +118,25 @@
             require("footer.php");
         ?>
         <?php
-            if (isset($_GET['azurirajkorisnika']))
+            if (isset($_POST['azurirajstudenta']))
             {
-                // TODO : ...
-                echo "aaaaaaa";
+                $update_email = $_POST['email'];
+                $update_lozinka = $_POST['password'];
+                $update_ime = $_POST['ime'];
+                $update_prezime = $_POST['prezime'];
+                $update_status = (strcmp($_POST['status'], "aktivan") == 0) ? 1 : 0;
+                $update_prvipristup = (isset($_POST['prvipristup'])) ? 1 : 0;
+                $update_brojindeksa = $_POST['indeks'];
+                $update_tipstudija = $_POST['tipstudija'];
+
+
+                $handle = dbConnect();
+                $result = mysqli_query($handle, "update korisnik set email='".$update_email."', lozinka='".$update_lozinka."', ime='".$update_ime."', prezime='".$update_prezime."', status=".$update_status.", prvipristup=".$update_prvipristup." where email='".$email."'");
+                $result = mysqli_query($handle, "update student set indeks='".$update_brojindeksa."', tipstudija='".$update_tipstudija."' where email='".$update_email."'");
+                
+                dbDisconnect($handle, false);
+
+                header("Location:/projekat/upravljaj_korisnicima.php");
             }
         ?>
     </body>

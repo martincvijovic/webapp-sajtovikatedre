@@ -52,6 +52,7 @@
                 if ($status == 0)
                 {
                     echo "<p>Nalog '$ime' nije aktivan. Molimo kontaktirajte administratora.</p>";
+                    exit();
                 }
 
                 $tipovi = ["administrator", "zaposleni", "student"];

@@ -1,5 +1,6 @@
-function validateUserUpdate()
+function validateStudentUpdate()
 {
+    // TODO : proveri da li se email zavrsava sa @etf.bg.ac.rs
     var email = document.getElementById("email").value;
     var lozinka = document.getElementById("lozinka").value;;
     var ime = document.getElementById("ime").value;;
@@ -18,7 +19,7 @@ function validateUserUpdate()
         isInputValid = false;
     }
 
-    var indeksSplitted = str.split(indeks);
+    var indeksSplitted = indeks.split("/");
     if (indeksSplitted.length != 2 || isNaN(indeksSplitted[0]) || isNaN(indeksSplitted[1]))
     {       
         isInputValid = false;
@@ -33,8 +34,11 @@ function validateUserUpdate()
     {
         window.alert("Neispravan unos!");
     }
-
-    window.alert(indeks);
+    else
+    {
+        // window.alert("Sve ok");
+        $('#studentupdate').submit();
+    }
 
     return isInputValid;
 }

@@ -6,6 +6,7 @@
     </head>
     <body>
         <?php
+            ob_start();
             require("header.php");
             require("sidemenu.php");
             
@@ -80,6 +81,7 @@
 
                     </table>
                     <hr>
+                    <h2 style='text-align: center'><b>Dodavanje novog korisnika</b></h2>
                 </div>
             <?php
             }
