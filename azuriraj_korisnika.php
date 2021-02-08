@@ -77,7 +77,7 @@
                         }
                         else if (strcmp($tip_korisnika, "zaposleni") == 0)
                         {
-                            // TODO : slika kod zaposlenog?
+                            // TODO : Forma za azuriranje zaposlenog
                             
                         }
                         else // student 
@@ -118,7 +118,7 @@
             require("footer.php");
         ?>
         <?php
-            if (isset($_POST['azurirajstudenta']))
+            if (isset($_POST['azurirajstudenta'])) 
             {
                 $update_email = $_POST['email'];
                 $update_lozinka = $_POST['password'];
@@ -131,6 +131,20 @@
 
 
                 $handle = dbConnect();
+
+               
+                if (strcmp($update_email, $email) !== 0)
+                {
+                    // Ako menjamo mejl, pre apdejtovanja korisnika proveriti da li novi mejl vec postoji u bazi
+                    $result = mysqli_query($handle, "select ime from user where email='".$update_email."'");
+                    if ($result != false && mysqli_num_rows($result) > 0)
+                    {
+                        echo "<p>Novi mejl je vec dodeljen drugom korisniku</p>";
+                        exit();
+                    }
+                }
+                
+
                 $result = mysqli_query($handle, "update korisnik set email='".$update_email."', lozinka='".$update_lozinka."', ime='".$update_ime."', prezime='".$update_prezime."', status=".$update_status.", prvipristup=".$update_prvipristup." where email='".$email."'");
                 $result = mysqli_query($handle, "update student set indeks='".$update_brojindeksa."', tipstudija='".$update_tipstudija."' where email='".$update_email."'");
                 
