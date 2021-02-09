@@ -43,7 +43,47 @@ function validateStudentUpdate()
     }
     else
     {
-        $('#studentupdate').submit();
+        
+        return true;
+    }
+}
+
+function validateZaposleniUpdate()
+{
+    var email = document.getElementById("email").value;
+    var lozinka = document.getElementById("lozinka").value;
+    var ime = document.getElementById("ime").value;
+    var prezime = document.getElementById("prezime").value;
+    var adresa = document.getElementById("adresa").value;
+    var mobilni = document.getElementById("mobilni").value;
+    var licniweb = document.getElementById("licniweb").value;
+    var biografija = document.getElementById("biografija").value;
+    var kabinet = document.getElementById("kabinet").value;
+
+    var isInputValid = true;
+
+    if (email.length <= 13 || lozinka.length == 0 || ime.length == 0 || prezime.length == 0 || adresa.length == 0 || licniweb.length == 0 || kabinet.length == 0 || biografija.length == 0)
+    {
+        window.alert("Neispravan unos!");
+        return false;
+    }
+
+    if (isNaN(mobilni) || (mobilni.length != 10))
+    {
+        window.alert("Neispravan unos!");
+        return false;
+    }
+
+    isInputValid = (email.indexOf("@etf.bg.ac.rs") == (email.length - 13));
+
+    if (!isInputValid)
+    {
+        window.alert("Neispravan unos!");
+        return false;
+    }
+    else
+    {
+       
         return true;
     }
 }
@@ -71,11 +111,7 @@ function validateNewUser()
     {
         window.alert("Neispravan unos!");
     }
-    else
-    {
-        // window.alert("Sve ok");
-        $('#newuserform').submit();
-    }
+    
 
     return isInputValid;
 }
