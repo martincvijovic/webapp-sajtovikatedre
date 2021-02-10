@@ -190,6 +190,7 @@
 
                 header("Location:/projekat/upravljaj_korisnicima.php");
             }
+    
             if (isset($_POST['azurirajzaposlenog']))
             {
                 $update_email = $_POST['email'];
@@ -204,7 +205,6 @@
                 $update_biografija = $_POST['biografija'];
                 $update_zvanje = $_POST['zvanje'];
                 $update_kabinet = $_POST['kabinet'];
-                $update_slika = $_POST['profilnaslika'];
 
                 $handle = dbConnect();
 
@@ -221,41 +221,43 @@
                 }
 
                 $result = mysqli_query($handle, "update korisnik set email='".$update_email."', lozinka='".$update_lozinka."', ime='".$update_ime."', prezime='".$update_prezime."', status=".$update_status.", prvipristup=".$update_prvipristup." where email='".$email."'");
-                $result = mysqli_query($handle, "update zaposleni set adresa='".$update_adresa."', mobilni='".$update_mobilni."', licniweb='".$update_licniweb."', biografija='".$update_biografija."', zvanje='".$update_zvanje."', kabinet='".$update_kabinet."'");
+                $result = mysqli_query($handle, "update zaposleni set adresa='".$update_adresa."', mobilni='".$update_mobilni."', licniweb='".$update_licniweb."', biografija='".$update_biografija."', zvanje='".$update_zvanje."', kabinet='".$update_kabinet."' where email='".$email."'");
 
                 /* Dodaj novu sliku na server, promeni ime slike u 'imgX' gde je X prvi slobodni integer */
 
-                $target_file = "img/".basename($_FILES["profilnaslika"]["name"]);
-                $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
-                $uploadOK = 1;
-
-                if (!file_exists($target_file))
+                if (strcmp($_FILES['profilnaslika']['name'], "") !== 0)
                 {
-                    if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg") 
+                    $target_file = "img/".basename($_FILES["profilnaslika"]["name"]);
+                    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                    $uploadOK = 1;
+
+                    if (!file_exists($target_file))
                     {
-                        echo "<p>Dozvoljene su samo .jpg, .png i .jpeg slike.</p>";
-                        exit();           
+                        if($file_type != "jpg" && $file_type != "png" && $file_type != "jpeg") 
+                        {
+                            echo "<p>Dozvoljene su samo .jpg, .png i .jpeg slike.</p>";
+                            exit();           
+                        }
+
+                        list($width, $height, $type, $attr) = getimagesize($_FILES['profilnaslika']['tmp_name']);
+                        if ($width > 300 || $height > 300)
+                        {
+                            echo "<p>Horizontalna/vertikalna dimenzija slike ne sme preci 300px.</p>";
+                            exit();
+                        }
+                        if (!move_uploaded_file($_FILES["profilnaslika"]["tmp_name"], $target_file)) 
+                        {
+                            $uploadOK = 0;
+                        }
                     }
 
-                    list($width, $height, $type, $attr) = getimagesize($_FILES['profilnaslika']['tmp_name']);
-                    if ($width > 300 || $height > 300)
+                    if ($uploadOK)
                     {
-                        echo "<p>Horizontalna/vertikalna dimenzija slike ne sme preci 300px.</p>";
-                        exit();
-                    }
-                    if (!move_uploaded_file($_FILES["profilnaslika"]["tmp_name"], $target_file)) 
-                    {
-                        $uploadOK = 0;
+                        mysqli_query($handle, "update zaposleni set profilnaslika='/".$target_file."'");
                     }
                 }
-
-                if ($uploadOK)
-                {
-                    mysqli_query($handle, "update zaposleni set profilnaslika='/".$target_file."'");
-                }
-                
-                
+                        
                 dbDisconnect($handle, false);
                 header("Location:/projekat/upravljaj_korisnicima.php");
             }
