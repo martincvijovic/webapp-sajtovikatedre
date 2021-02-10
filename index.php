@@ -16,7 +16,7 @@
                 require("mysql_functions.php");
 
                 $handle = dbConnect();
-                $result = mysqli_query($handle, "select * from obavestenje_sajt where datum_objave >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH)");
+                $result = mysqli_query($handle, "select * from obavestenje_sajt where datum_objave >= DATE_SUB(CURDATE(), INTERVAL 3 MONTH) order by datum_objave desc");
 
                 if ($result !== false && mysqli_num_rows($result) > 0)
                 {

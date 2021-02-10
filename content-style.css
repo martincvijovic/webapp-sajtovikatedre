@@ -1,8 +1,8 @@
 #content{
     background-color: rgb(230, 231, 233);
-    padding-left: 300px;
+    padding-left: 310px;
     padding-top: 50px;
-    padding-right: 30px;
+    padding-right: 10px;
 }
 
 input[type="text"], input[type="password"]{

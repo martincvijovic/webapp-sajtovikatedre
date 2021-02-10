@@ -115,3 +115,30 @@ function validateNewUser()
 
     return isInputValid;
 }
+
+function validateNewGeneralNotification()
+{
+    var naslov = document.getElementById("naslov").value;
+    var sadrzaj = CKEDITOR.instances.sadrzaj.getData();
+
+    if (sadrzaj.length > 0 && naslov.length > 0)
+    {
+        return true;
+    }
+    
+    window.alert("Polje za unos ne sme biti prazno!");
+    return false;
+}
+
+function validateNewGeneralNotificationCategory()
+{
+    var naziv_kat = document.getElementById("imekategorije").value;
+
+    if (naziv_kat.length > 0)
+    {
+        return true;
+    }
+
+    window.alert("Polje za unos ne sme biti prazno!");
+    return false;
+}
