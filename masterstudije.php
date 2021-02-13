@@ -10,14 +10,14 @@
             require("sidemenu.php");
         ?>
         <div id="content">
-            <h2 style='text-align: center'><b>Osnovne studije</b></h2>
+            <h2 style='text-align: center'><b>Master studije</b></h2>
             <?php
                 require("mysql_functions.php");
                 $handle = dbConnect();
 
                 $result = array();
 
-                for ($i = 1; $i <= 8; $i ++)
+                for ($i = 9; $i <= 10; $i ++)
                 {
                     echo "<h3><b>".$i.". semestar</b></h3>";
 

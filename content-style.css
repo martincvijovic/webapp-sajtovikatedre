@@ -20,3 +20,7 @@ body{
 .col{
     flex: 1; /* additionally, equal width */
 }
+
+#predmet-meni{
+    width: 100%;
+}
