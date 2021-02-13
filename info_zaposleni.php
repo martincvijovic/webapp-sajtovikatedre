@@ -58,9 +58,7 @@
                                 if (strcmp($_SESSION['email'], $_GET['email']) == 0 || strcmp($_SESSION['tip'], "administrator") == 0)
                                 {
                                     ?>
-                                    <form method="GET" action="azuriraj_korisnika.php?email=<?php echo $email ?>">
-                                        <input type="submit" value="Izmeni profil">
-                                    </form>
+                                    <a href="<?php echo "azuriraj_korisnika.php?email=".$email ?>">Izmeni profil</a>
                                     <?php
                                 }                                
                             }      

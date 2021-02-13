@@ -39,7 +39,7 @@
                     {
                         ?>
                         <ul>
-                            <li><a href="profil.php">Profil</a></li>
+                            <li><a href="<?php echo "info_zaposleni.php?email=".$_SESSION['email'] ?>">Profil</a></li>
                             <li><a href="predmeti.php">Predmeti</a></li>
                             <li><a href="obavestenja_o_predmetima.php">Obavestenja o predmetima</a></li>
                         </ul>

@@ -12,8 +12,12 @@
                         */
             require("header.php");
             require("sidemenu.php");
+
+            /**
+             * Administratoru je dozvoljeno da menja sve korisnike. Takodje, dozvoljeno je profesoru da menja svoje podatke.
+             */
             
-            if (!(isset($_SESSION['tip']) && strcmp($_SESSION['tip'], "administrator") == 0))
+            if (!((isset($_SESSION['tip']) && strcmp($_SESSION['tip'], "administrator") == 0) || strcmp($_GET['email'], $_SESSION['email']) == 0))
             {
                 echo "Niste ovlasceni da vidite ovaj sadrzaj";
             }
@@ -23,7 +27,7 @@
                 $email = $_GET['email'];
 
                 require("mysql_functions.php");
-                
+
                 $handle = dbConnect();
                 $result = mysqli_query($handle, "select * from korisnik where email='".$email."'");
 
