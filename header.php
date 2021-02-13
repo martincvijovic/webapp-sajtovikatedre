@@ -32,7 +32,7 @@
             {
                 session_destroy();
                 $_SESSION = array();
-                header("Location:/projekat/index.php");
+                header("Location:index.php");
             }
         ?>
     </body>

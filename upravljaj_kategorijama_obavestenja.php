@@ -73,7 +73,7 @@
                 $result = mysqli_query($handle, "delete from kategorija_obavestenja where id=".$id_delete);
 
                 dbDisconnect($handle, false);
-                header("Location:/projekat/upravljaj_kategorijama_obavestenja.php");
+                header("Location:upravljaj_kategorijama_obavestenja.php");
             }
             if (isset($_GET['dodaj']))
             {
@@ -83,7 +83,7 @@
                 $result = mysqli_query($handle, "insert into kategorija_obavestenja(naziv) values('".$naziv_dodaj."')");
 
                 dbDisconnect($handle, false);
-                header("Location:/projekat/upravljaj_kategorijama_obavestenja.php");
+                header("Location:upravljaj_kategorijama_obavestenja.php");
             }
         ?>
     </body>

@@ -147,7 +147,7 @@
 
                 dbDisconnect($handle, false);
 
-                header("Location:/projekat/upravljaj_korisnicima.php");
+                header("Location:upravljaj_korisnicima.php");
             }
         ?>
         <?php
@@ -163,7 +163,7 @@
 
                 dbDisconnect($handle, false);
 
-                header("Location:/projekat/upravljaj_korisnicima.php"); // TODO : apsolutna -> relativna adresa !!!
+                header("Location:upravljaj_korisnicima.php"); // TODO : apsolutna -> relativna adresa !!!
             }
         ?>
     </body>

@@ -45,7 +45,7 @@
                     session_destroy();
                     $_SESSION = array();
 
-                    header("Location:/projekat/login.php");
+                    header("Location:login.php");
                 }
                 else
                 {

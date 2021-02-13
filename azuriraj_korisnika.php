@@ -7,7 +7,9 @@
     </head>
     <body>
         <?php
-            ob_start(); /* Bez ovoga baca neku jako cudnu gresku sa headerima, trazio sam 2h ali nisam nasao zasto */
+            ob_start(); /* Bez ovoga baca neku jako cudnu gresku sa headerima gde ne dozvoljava poziv funkcije header ukoliko je 
+                           trenutni fajl imao bilo kakav output (echo, print...)
+                        */
             require("header.php");
             require("sidemenu.php");
             
@@ -111,7 +113,7 @@
                                 </p>
                                 <p>Kabinet <input id="kabinet" type="text" name="kabinet" value="<?php echo $kabinet ?>"></p>
                         
-                                <?php echo "<img src='http://localhost/projekat".$profilnaslika."' >" ?> <!-- RELATIVNA putanja --> 
+                                <?php echo "<img src='".$profilnaslika."' >" ?> 
                                 <p>Dodaj novu profilnu sliku dimenzija do 300x300px <input type="file" name="profilnaslika" id="profilnaslika"></p>
                                 
                                 <input type="submit" name="azurirajzaposlenog" value="Azuriraj zaposlenog">
@@ -173,7 +175,7 @@
                
                 if (strcmp($update_email, $email) !== 0)
                 {
-                    // Ako menjamo mejl, pre apdejtovanja korisnika proveriti da li novi mejl vec postoji u bazi
+                    // Ako menjamo mejl, pre apdejtovanja korisnika proveravamo da li novi mejl vec postoji u bazi
                     $result = mysqli_query($handle, "select ime from user where email='".$update_email."'");
                     if ($result != false && mysqli_num_rows($result) > 0)
                     {
@@ -181,14 +183,13 @@
                         exit();
                     }
                 }
-                
 
                 $result = mysqli_query($handle, "update korisnik set email='".$update_email."', lozinka='".$update_lozinka."', ime='".$update_ime."', prezime='".$update_prezime."', status=".$update_status.", prvipristup=".$update_prvipristup." where email='".$email."'");
                 $result = mysqli_query($handle, "update student set indeks='".$update_brojindeksa."', tipstudija='".$update_tipstudija."' where email='".$update_email."'");
                 
                 dbDisconnect($handle, false);
 
-                header("Location:/projekat/upravljaj_korisnicima.php");
+                header("Location:upravljaj_korisnicima.php");
             }
     
             if (isset($_POST['azurirajzaposlenog']))
@@ -223,8 +224,6 @@
                 $result = mysqli_query($handle, "update korisnik set email='".$update_email."', lozinka='".$update_lozinka."', ime='".$update_ime."', prezime='".$update_prezime."', status=".$update_status.", prvipristup=".$update_prvipristup." where email='".$email."'");
                 $result = mysqli_query($handle, "update zaposleni set adresa='".$update_adresa."', mobilni='".$update_mobilni."', licniweb='".$update_licniweb."', biografija='".$update_biografija."', zvanje='".$update_zvanje."', kabinet='".$update_kabinet."' where email='".$email."'");
 
-                /* Dodaj novu sliku na server, promeni ime slike u 'imgX' gde je X prvi slobodni integer */
-
                 if (strcmp($_FILES['profilnaslika']['name'], "") !== 0)
                 {
                     $target_file = "img/".basename($_FILES["profilnaslika"]["name"]);
@@ -254,12 +253,12 @@
 
                     if ($uploadOK)
                     {
-                        mysqli_query($handle, "update zaposleni set profilnaslika='/".$target_file."'");
+                        mysqli_query($handle, "update zaposleni set profilnaslika='".$target_file."' where email='".$update_email."'");
                     }
                 }
                         
                 dbDisconnect($handle, false);
-                header("Location:/projekat/upravljaj_korisnicima.php");
+                header("Location:upravljaj_korisnicima.php");
             }
         ?>
     </body>

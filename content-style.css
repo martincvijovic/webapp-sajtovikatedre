@@ -13,3 +13,10 @@ body{
     background-color: rgb(230, 231, 233);
 }
 
+.row{
+    display: flex; /* equal height of the children */
+}
+  
+.col{
+    flex: 1; /* additionally, equal width */
+}

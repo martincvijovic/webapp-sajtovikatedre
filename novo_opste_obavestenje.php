@@ -70,9 +70,7 @@
 
                 dbDisconnect($handle, false);
 
-                // echo "insert into obavestenje_sajt values (".$kategorija.", '".$naslov."', '". $sadrzaj."', '".date('Y-m-d')."', '".$autor."')";
-
-                header("Location:/projekat/index.php");
+                header("Location:index.php");
             }
         ?>
     </body>

@@ -3,5 +3,5 @@
     $dbUsername = "root";
     $dbPassword = "";
     $dbName = "sajtovikatedre2020";
-    $imgDefault = "/img/default-image.png";
+    $imgDefault = "img/default-image.png";
 ?>
