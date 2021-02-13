@@ -13,10 +13,10 @@
                 <li><a href="projekti.php">Projekti</a></li>
                 <li>Servisi
                     <ul>
-                        <li><a href="http://www.etf.rs/">Fakultet</a></li>
-                        <li><a href="http://student.etf.rs/">Studentski servisi</a></li>
-                        <li><a href="http://lists.etf.rs/">Mejling liste</a></li>
-                        <li><a href="http://rti.etf.rs/sale/">Paviljon - Laboratorije</a></li>
+                        <li><a href="http://www.etf.rs/" target="_blank">Fakultet</a></li>
+                        <li><a href="http://student.etf.rs/" target="_blank">Studentski servisi</a></li>
+                        <li><a href="http://lists.etf.rs/" target="_blank">Mejling liste</a></li>
+                        <li><a href="http://rti.etf.rs/sale/" target="_blank">Paviljon - Laboratorije</a></li>
                     </ul>
                 </li>
                 <li><a href="kontakt.php">Kontakt</a></li>

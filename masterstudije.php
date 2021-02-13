@@ -27,10 +27,12 @@
                     {
                         echo "<ul>";
                         while ($row = mysqli_fetch_assoc($result))
-                        {
-                            /*
-                                Neregistrovani korisnik vidi samo imena predmeta dok registrovani korisnik dobija link
-                            */
+                        {                          
+                            /**
+                             * Neregistrovani korisnik dobija samo listu dok ulogovani korisnik dobija link. Cak i ako bi
+                             * neregistrovani korisnik pokusao rucno da udje na neki predmet, svaki fajl ima uslove pod kojima 
+                             * prikazuje svoj sadrzaj.
+                             */
                             if (isset($_SESSION['email']))
                             {
                                 echo "<li><a href='predmet.php?sifra=".$row['sifra_predmet']."'>".$row['naziv']."</a></li>";
