@@ -36,7 +36,7 @@
                 {
                     $handle = dbConnect();
 
-                    // menjamo sifru i stavljamo prvi pristup na nulu
+                    // menjamo sifru i stavljamo prvi pristup na nulu da ne bi prosao login
                     $result = mysqli_query($handle, "update korisnik set lozinka='".$password1."' where email='".$email."'");
                     $result = mysqli_query($handle, "update korisnik set prvipristup=0 where email='".$email."'");
 

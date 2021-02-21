@@ -32,6 +32,7 @@
                             <li><a href="novo_opste_obavestenje.php">Dodaj novo opste obavestenje</a></li>
                             <li><a href="upravljaj_kategorijama_obavestenja.php">Upravljaj kategorijama obavestenja</a></li>
                             <li><a href="nov_predmet_grupa_nastavnik.php">Dodeli predmet i grupu nastavniku</a></li>
+                            <li><a href="dodaj_studente_na_predmet.php">Dodaj studente na predmet</a></li>
                         </ul>
                         <?php
                     }
@@ -40,14 +41,24 @@
                         ?>
                         <ul>
                             <li><a href="<?php echo "info_zaposleni.php?email=".$_SESSION['email'] ?>">Profil</a></li>
-                            <li><a href="predmeti.php">Predmeti</a></li>
-                            <li><a href="obavestenja_o_predmetima.php">Obavestenja o predmetima</a></li>
+                            <li><a href="prof_predmeti.php">Predmeti</a></li>
+                            <li>Vesti
+                                <ul>
+                                    <li><a href="prof_novo_obavestenje.php">Nova vest</a></li>
+                                    <li><a href="upravljaj_obavestenjima.php">Upravljanje</a></li>
+                                </ul>
+                            </li>
+                            
                         </ul>
                         <?php
                     }
                     if (strcmp($_SESSION['tip'], "student") == 0)
                     {
-                        // TODO : Omoguci prikaz detalja o predmetu i mogucnost zapracivanja/otpracivajna (vrv ne na ovojs tranici)
+                        ?>
+                        <ul>
+                            <li><a href="student_moji_predmeti.php">Moji predmeti</a></li>
+                        </ul>
+                        <?php
                     }
                     ?>
 

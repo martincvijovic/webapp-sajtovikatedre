@@ -23,7 +23,7 @@
                     $handle = dbConnect();
                     
                     // Podrazumevamo ispravno konfigurisanu bazu jer je admin deo za upravljanje korisnicima ispravno konfigurisan
-                    // Baza nece sadrzati nepredvidjene vrednosti ukoliko se korisnicima pristupa iskljucivo iz aplikacije.
+                    // Baza nece sadrzati nepredvidjene vrednosti ukoliko se njoj pristupa iskljucivo iz aplikacije.
                     $result = mysqli_fetch_assoc(mysqli_query($handle, "select * from korisnik where email='".$email."'"));
                     $result_info = mysqli_fetch_assoc(mysqli_query($handle, "select * from zaposleni where email='".$email."'"));
 

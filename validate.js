@@ -94,8 +94,6 @@ function validateNewUser()
     var lozinka = document.getElementById("lozinkanewuser").value;
     var ime = document.getElementById("imenewuser").value;
     var prezime = document.getElementById("prezimenewuser").value;
-    var status = document.getElementById("statusnewuser").value; // select, ne treba provera
-    var tipkorisnika = document.getElementById("tipkorisnikanewuser").value; // select, ne treba provera
 
     var isInputValid = true;
 
@@ -141,4 +139,49 @@ function validateNewGeneralNotificationCategory()
 
     window.alert("Polje za unos ne sme biti prazno!");
     return false;
+}
+
+function validateObavestenjePredmetUpdate()
+{
+    var naslov = document.getElementById("naslov").value;
+    var sadrzaj = CKEDITOR.instances.sadrzaj.getData();
+
+    if (naslov.length == 0 || sadrzaj.length == 0)
+    {
+        window.alert("Polje za unos ne sme biti prazno!");
+        return false;
+    }
+
+    return true;
+}
+
+function validateNewProfessorNotification()
+{
+    return validateObavestenjePredmetUpdate(); // funkcija ima isti format (ista input polja)
+}
+
+function validateProfIzmeniInfoPredmet()
+{
+    var fondCasova = document.getElementById("fond_casova").value;
+    var ESPB = document.getElementById("broj_ESPB").value;
+    var cilj = CKEDITOR.instances.cilj_predmeta.getData();
+    var ishod = CKEDITOR.instances.ishod_predmeta.getData();
+
+    if (isNaN(fondCasova) || isNaN(ESPB) || cilj.length == 0 || ishod.length == 0)
+    {
+        window.alert("Neispravan format unosa");
+        return false;
+    }
+
+    return true;
+}
+
+function validateNovPredmetGrupaNastavnik() // ADMIN //
+{
+    
+    /**
+     * Nema provere, funkcija je nepotrebna.
+     * TODO : Proveri da li je polje za unos grupe prazno na frontendu umesto na backendu
+     */
+    return true;
 }

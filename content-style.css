@@ -14,11 +14,11 @@ body{
 }
 
 .row{
-    display: flex; /* equal height of the children */
+    display: flex; 
 }
   
 .col{
-    flex: 1; /* additionally, equal width */
+    flex: 1; 
 }
 
 #predmet-meni{

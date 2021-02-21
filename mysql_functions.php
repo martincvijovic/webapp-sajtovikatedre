@@ -2,7 +2,6 @@
     function dbConnect()
     {
         require("config.php");
-
         $handle = mysqli_connect($dbPath, $dbUsername, $dbPassword, $dbName);
 
         if (mysqli_connect_errno())
@@ -14,6 +13,9 @@
     }
 
     function dbDisconnect($handle, $query_result)
+    /**
+     * TODO : Funkcija treba da POTENCIJALNO prima niz query_result-ova a ne samo jedan, takodje treba da radi i ako ne postoji drugi argument
+     */
     {
         if ($query_result != true && $query_result != false)
         {

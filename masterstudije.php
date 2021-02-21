@@ -21,25 +21,28 @@
                 {
                     echo "<h3><b>".$i.". semestar</b></h3>";
 
-                    $result = mysqli_query($handle, "select * from predmet where semestar=".$i);
+                    require("config.php");
+
+                    $result = mysqli_query($handle, "select * from nastavni_plan where semestar=".$i." and id_odseka=".$ID_RTI);
 
                     if ($result !== false && mysqli_num_rows($result) > 0)
                     {
                         echo "<ul>";
                         while ($row = mysqli_fetch_assoc($result))
-                        {                          
-                            /**
-                             * Neregistrovani korisnik dobija samo listu dok ulogovani korisnik dobija link. Cak i ako bi
-                             * neregistrovani korisnik pokusao rucno da udje na neki predmet, svaki fajl ima uslove pod kojima 
-                             * prikazuje svoj sadrzaj.
-                             */
+                        {
+                            /*
+                                Neregistrovani korisnik vidi samo imena predmeta dok registrovani korisnik dobija link
+                            */
+                            $result_predmet = mysqli_query($handle, "select * from predmet where sifra_predmet='".$row['sifra_predmet']."'");
+                            $info_predmet = mysqli_fetch_assoc($result_predmet);
+
                             if (isset($_SESSION['email']))
                             {
-                                echo "<li><a href='predmet.php?sifra=".$row['sifra_predmet']."'>".$row['naziv']."</a></li>";
+                                echo "<li><a href='predmet.php?sifra=".$info_predmet['sifra_predmet']."'>".$info_predmet['naziv']."</a></li>";
                             } 
                             else
                             {   
-                                echo "<li>".$row['naziv']."</li>";
+                                echo "<li>".$info_predmet['naziv']."</li>";
                             }
                         }
                         echo "</ul>";

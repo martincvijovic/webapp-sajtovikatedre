@@ -7,16 +7,18 @@
     </head>
     <body>
         <?php
-            ob_start(); /* Bez ovoga baca neku jako cudnu gresku sa headerima gde ne dozvoljava poziv funkcije header ukoliko je 
-                           trenutni fajl imao bilo kakav output (echo, print...)
-                        */
+            ob_start(); 
+            /**
+             * Dozvoljava poziv funkcije header cak iako je program vec imao neki echo ili print output prethodno.
+             * Taj problem svakako nastaje zbog 'sintaksne greske' (visak nekog space-a ili sl) ali nisam uspeo da nadjem tu gresku
+             */
+            
             require("header.php");
             require("sidemenu.php");
 
             /**
              * Administratoru je dozvoljeno da menja sve korisnike. Takodje, dozvoljeno je profesoru da menja svoje podatke.
              */
-            
             if (!((isset($_SESSION['tip']) && strcmp($_SESSION['tip'], "administrator") == 0) || strcmp($_GET['email'], $_SESSION['email']) == 0))
             {
                 echo "Niste ovlasceni da vidite ovaj sadrzaj";

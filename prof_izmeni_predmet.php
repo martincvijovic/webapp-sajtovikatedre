@@ -22,15 +22,14 @@
             <hr>
             <table id="predmet-meni">
                 <tr>              
-                    <td><a href="<?php echo "obavestenja_predmet.php?sifra=".$sifra ?>" target="frame">Obavestenja</a></td>
-                    <td><a href="<?php echo "info_predmet.php?sifra=".$sifra ?>" target="frame">Informacije o predmetu</a></td>
-                    <td><a href="<?php echo "predavanja_predmet.php?sifra=".$sifra ?>" target="frame">Predavanja</a></td>
-                    <td><a href="<?php echo "vezbe_predmet.php?sifra=".$sifra ?>" target="frame">Vezbe</a></td>
-                    <td><a href="<?php echo "ispitnapitanja_predmet.php?sifra=".$sifra ?>" target="frame">Ispitna pitanja</a></td>
+                    <td><a href="<?php echo "prof_izmeni_info_predmet.php?sifra=".$sifra ?>" target="frame">Informacije o predmetu</a></td>
+                    <td><a href="<?php echo "prof_izmeni_predavanja_predmet.php?sifra=".$sifra ?>" target="frame">Predavanja</a></td>
+                    <td><a href="<?php echo "prof_izmeni_vezbe_predmet.php?sifra=".$sifra ?>" target="frame">Vezbe</a></td>
+                    <td><a href="<?php echo "prof_izmeni_ispitnapitanja_predmet.php?sifra=".$sifra ?>" target="frame">Ispitna pitanja</a></td>
                 </tr>
             </table>
             <hr>
-            <iframe src="<?php echo "info_predmet.php?sifra=".$sifra ?>" name="frame" style="border: none; width:100%; height:100%">
+            <iframe src="<?php echo "prof_izmeni_info_predmet.php?sifra=".$sifra ?>" name="frame" style="border: none; width:100%; height:100%">
             </iframe>
         </div>
         <?php

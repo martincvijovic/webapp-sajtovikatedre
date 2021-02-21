@@ -60,7 +60,7 @@
                                     echo "<td>";
                                     ?>
                                     <form method="GET" action="azuriraj_korisnika.php">
-                                        <input type="text" name="email" value=<?php echo $email ?> hidden> <!-- mozda malo lepse? -->
+                                        <input type="text" name="email" value=<?php echo $email ?> hidden> 
                                         <input type="submit" name="submit" value="Izmeni">
                                     </form>
                                     <?php
@@ -68,7 +68,7 @@
                                     echo "<td>";
                                     ?>
                                     <form method="GET">
-                                        <input type="text" name="email" value=<?php echo $email ?> hidden> <!-- mozda malo lepse? -->
+                                        <input type="text" name="email" value=<?php echo $email ?> hidden> 
                                         <input type="submit" name="obrisikorisnika" value="Obrisi korisnika">
                                     </form>
                                     <?php
@@ -111,7 +111,6 @@
         <?php
             if (isset($_POST['dodajkorisnika']))
             {
-                // TODO : proveri da li email vec postoji u bazi, ako ne postoji sve je ok
                 $email_new = $_POST['emailnewuser'];
                 $lozinka_new = $_POST['lozinkanewuser'];
                 $ime_new = $_POST['imenewuser'];
@@ -163,7 +162,7 @@
 
                 dbDisconnect($handle, false);
 
-                header("Location:upravljaj_korisnicima.php"); // TODO : apsolutna -> relativna adresa !!!
+                header("Location:upravljaj_korisnicima.php"); 
             }
         ?>
     </body>

@@ -51,8 +51,15 @@
                                                     $imepredmeta = $predmet_result['naziv'];
                                                     $grupa_drzanja_predmeta = $row_predmet['grupa'];
 
-
-                                                    echo "<li>".$imepredmeta." - ".$grupa_drzanja_predmeta."</li>";
+                                                    if (isset($_SESSION['email']))
+                                                    {
+                                                        echo "<li><a href='predmet.php?sifra=".$sifra_predmeta."'>".$imepredmeta."</a> - ".$grupa_drzanja_predmeta."</li>";
+                                                    }
+                                                    else
+                                                    {
+                                                        echo "<li>".$imepredmeta." - ".$grupa_drzanja_predmeta."</li>";
+                                                    }
+                                                    
                                                 }
                                             }
                                         ?>

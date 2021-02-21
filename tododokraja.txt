@@ -1,0 +1,4 @@
+- studentima mejl ide sa @student.etf.rs umesto sa @etf.bg.ac.rs // veliki bag, prodji ceo kod pa prvo markiraj sta sve treba da se menja
+- fajl moze biti vidljiv!?
+
+-- popunjavanje baze sa mnogo razlicitih vrednosti i TESTIRANJE

@@ -25,14 +25,11 @@
                 }
 
                 require("mysql_functions.php");
-                
                 $handle = dbConnect();
-
                 if ($handle == false)
                 {
                     exit();
                 }
-
                 $result = mysqli_query($handle, "select * from korisnik where email='".$email."' and lozinka='".$password."'");
 
                 if ($result != false && mysqli_num_rows($result) > 0) 

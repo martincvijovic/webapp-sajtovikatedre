@@ -1,0 +1,15 @@
+Poštovani profesore,
+
+Javljam se da predložim par tema za diplomski rad. Naravno, ja trenutno nisam previše upućen u mogućnosti izrade ovih radova i kompleksnosti problema koje sam naveo. Moguće je da su neke od ovih tema previše jednostavne ili previše komplikovane. Posebno nisam siguran oko tema koje uključuju ML/AI (CNN, Deep learning, ...) algoritme. Naravno, bio bih i više nego raspoložen da učim te oblasti i voleo bih da implementiram neki od tih algoritama u diplomskom radu jer smatram da bi to bio odličan uvod ka toj sferi Computer Vision-a, ali, svakako, nisam svestan da li su i koliko su ti algoritmi kompleksni i time-consuming za učenje. S tim u vezi, šaljem Vam par tema koje smatram zanimljivim pa bih voleo da ih pogledate i procenite šta i kako sa njima:
+
+- Identična tema ili nastavak Vukove teme (detekcija pulsa na osnovu video snimka lica), neki drugi pristup, možda ML u određenim delovima?
+- Driver drowsiness detection via video camera (izgled lica/zatvaraju se oci/zevanje)
+- Front Vehicle Detection and Distance Estimation Using Single-Lens Video Camera
+- Suspicious behavior detection of people by monitoring camera
+- An algorithm for automatic vehicle speed detection using video camera
+- A Novel Computer Vision based Approach for Detection of Children Body Expressions with Cerebral Palsy
+
+Naravno, koje god teme da Vi imate koje spadaju u slične oblasti obrade slike (u potencijalnoj kombinaciji sa nekim ML/AI algoritmom) bi bile super. Tako da, zanimaju me i teme koje Vi imate da predložite, kao i teme koje ste dobili na sastanku sa firmom Agremo.
+
+Pozdrav,
+Martin Cvijović
