@@ -68,7 +68,7 @@
                 echo ($target_file);
 
                 $result = mysqli_query($handle, "insert into materijal (naslov, fajlputanja, sifra_predmet, tip_materijala, id_nastavnik, datum_objave, vidljiv) values ('".$_POST['naslov']."', '".$target_file."', '".$_GET['sifra']."', 'predavanja', '".$_SESSION['email']."', CURDATE(), 1)");
-                header("Location:prof_izmeni_predavanja_predmet.php");
+                header("Location:prof_izmeni_predavanja_predmet.php?sifra=".$_GET['sifra']);
 
                 dbDisconnect($handle, false);
             }
