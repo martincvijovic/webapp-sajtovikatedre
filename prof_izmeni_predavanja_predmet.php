@@ -18,17 +18,17 @@
             $result_autor = mysqli_fetch_assoc(mysqli_query($handle, "select * from korisnik where email='".$row['id_nastavnik']."'"));
             $autor_ime = $result_autor['ime']." ".$result_autor['prezime'];
 
-            echo "<p><a href='".$row['fajlputanja']."' target='_blank'>".$row['naslov']."</a> | ".$row['datum_objave']." | Autor: ".$autor_ime." <a href='prof_izmeni_predavanje.php?id=".$row['id_materijal']."'>Izmeni</a> <a href='prof_izmeni_predavanja_predmet.php?obrisi=1&id=".$row['id_materijal']."'>Obrisi</a></p>";
+            echo "<p><a href='".$row['fajlputanja']."' target='_blank'>".$row['naslov']."</a> | ".$row['datum_objave']." | Autor: ".$autor_ime." <a href='prof_izmeni_predavanja_predmet.php?obrisi=1&id=".$row['id_materijal']."'>Obrisi</a></p>";
         }
     }
 
     if (isset($_GET['obrisi']) && $_GET['obrisi'] == 1)
     {
-        $filepath = mysqli_fetch_assoc(mysqli_query($handle, "select * from materijal where id_materijal=".$_GET['id']))['fajlputanja'];
-        unlink($filepath);
-
         $result = mysqli_query($handle, "delete from materijal where id_materijal=".$_GET['id']);
-        header("Location:prof_izmeni_predavanja_predmet.php");
+        unset($_GET['obrisi']);
+        dbDisconnect($handle, false);
+        
+        header("Location:prof_izmeni_predavanja_predmet.php?sifra=".$_GET['sifra']);
     }
 
     dbDisconnect($handle, false);

@@ -1,1 +1,0 @@
-SUBST P: "C:\Users\Martin\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04onWindows_79rhkp1fndgsc\LocalState\rootfs\home\martin"
